@@ -139,3 +139,52 @@ flowchart LR
 ### Design Trade-offs
 
 - Master 중심 릴레이는 전달 경로를 단순화하지만 Master에 대한 의존성이 생깁니다.
+
+## Implementation — UM Letter 결과 조회와 화면 상태 관리
+
+```mermaid
+sequenceDiagram
+    participant U as Admin / App
+    participant Q as Spring Boot 조회 API
+    participant D as 내부 DB
+    participant T as 비동기 TMS 조회 (@Async)
+    participant E as 외부 TMS
+    U->>Q: 화면 진입 / 상태 조회
+    Q->>D: 현재 전송 상태 조회
+    Q-->>U: 저장된 상태 반환
+    Q->>T: 비동기 결과 확인 시작
+    T->>E: 전송 결과 조회
+    E-->>T: 미확정 또는 성공/실패 코드
+    alt 최종 결과 확인
+        T->>D: 결과 상태 + 응답 코드 갱신
+    else 결과 미확정
+        Note over D,T: 결과 상태 빈값 유지
+    end
+    Note over U,Q: 화면 재진입 시 React Query 재조회 및 TMS 결과 재확인
+```
+
+- **상태 모델:** 결과 미확정은 빈값, 결과 확정 시 성공·실패 상태와 TMS 응답 코드를 저장했습니다.
+- **비동기 경계:** 조회 API 내부에서 `@Async` 결과 확인을 시작하고, 사용자 조회는 내부 DB 상태를 반환했습니다.
+- **React:** 화면 재진입 시 React Query 재조회로 저장 상태를 갱신하고 렌더링했습니다. DB 변경을 실시간 Push로 감지하는 구조라고 표현하지 않습니다.
+- **중복 전송 방어:** 상태에 따라 중복 요청을 막고, 결과 미확정 상태에서는 재전송 버튼을 눌러도 재전송 API를 호출하지 않도록 처리했습니다.
+
+### Impact & Trade-offs
+
+- **정확성:** 전송 요청 성공과 실제 TMS 최종 결과를 분리하고, 확인된 TMS 결과 코드로 내부 상태 불일치를 줄였습니다.
+- **응답성:** Admin·App이 외부 TMS의 결과 확정을 동기적으로 기다리지 않도록 조회 경로를 분리했습니다.
+- **한계:** 화면 첫 조회에는 기존 DB 상태가 표시될 수 있고, 결과 미확정 건은 다음 화면 진입 시 다시 확인합니다.
+
+## Implementation — Bluetooth 병합 및 SQL 병목 분석
+
+```mermaid
+flowchart LR
+    S[Slave 변경 레코드] --> M[Master 수신]
+    M --> K{업무 Key / Unique Key}
+    K --> L{UPDATE 시각 비교 - LWW}
+    L --> D[(Local DB Merge)]
+    D --> P[다른 Slave로 전파]
+```
+
+- LWW 적용 전 Bluetooth 송신 데이터가 수신 단말에 예측하기 어렵게 덮어써지는 현상을 발견했습니다. **업무 Key 기반 Merge, 엄격한 Unique Key 관리, UPDATE 시각 기반 LWW**를 적용했습니다. LWW는 이전 변경 이력을 모두 보존해야 하는 업무에는 적합하지 않을 수 있습니다.
+- 특정 조회 API는 디버깅으로 API 전달 경로가 아닌 **MyBatis SQL 실행 구간**을 병목으로 확인했습니다. 조회 SQL 조건에 맞는 인덱스를 적용해 STG 응답 시간을 **약 12초에서 3초 이하**로 개선했습니다. 인덱스 유지 비용은 트레이드오프입니다.
+- Splash 단계 일괄 Local DB 정리 대신 업무 화면 진입 시 해당 데이터만 정리하도록 제안했습니다. 업무별 데이터가 독립적으로 관리된다는 점과 초기 부하 집중 위험을 근거로 타 조직 Solution Architect·고객과 협의했습니다. 업무 최초 진입 시 정리 비용은 남습니다.

@@ -4,6 +4,14 @@
 **기간:** 2024.03–2025.06  
 **주요 기술:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, RDB
 
+## Project Background — 어떤 서비스였나
+
+교사와 학생이 사용하는 **AI 디지털교과서(AIDT) 교육 플랫폼을 구축하고 서비스 오픈 이후 운영까지 담당한 프로젝트**입니다. 콘텐츠·과제·운영자 기능을 개발했으며, 운영 단계에서는 실제 사용자 문의와 장애, 외부 API 변경, 배치 안정성, 데이터 조회 성능, 보안 점검 대응이 이어졌습니다.
+
+서비스는 React/TypeScript Frontend, Java/Spring Boot Backend, MySQL·Redis 및 Naver Cloud 기반으로 구성됐습니다. 일부 화면에서 필요한 정보는 외부 공공 API에 의존했기 때문에, 외부 시스템의 응답 지연이나 일시적 실패가 사용자 조회 경험에 영향을 주지 않도록 **정기 배치 사전 적재와 내부 RDB 우선 조회** 구조를 설계했습니다.
+
+**담당 범위:** Full-stack 개발과 운영, 외부 API 데이터 수집·조회 구조 직접 설계 및 구현, 운영 이슈 분석과 개선. 구축부터 운영까지 이어진 경험이 핵심입니다.
+
 ## Tech Stack
 
 - **Frontend / Admin:** React, TypeScript, React Admin, Zustand, Recoil

@@ -4,6 +4,16 @@
 **기간:** 2026.01–2026.09  
 **주요 기술:** Java, Spring Boot, React, TypeScript, React Native, TanStack Query, PostgreSQL, Redis, SQLite, Bluetooth
 
+## Project Background — 어떤 서비스였나
+
+항공기 객실 승무원이 **비행·승객·기내 서비스 정보를 확인하고 업무를 처리하는 통합 시스템** 구축 프로젝트입니다. 현장용 Mobile/Hybrid App뿐 아니라 운영자용 Admin, 협력사용 Partner 시스템이 함께 연결되는 기업 업무 환경이었습니다.
+
+객실 업무는 **네트워크 연결이 불안정하거나 끊길 수 있는 기내 환경**에서도 이어져야 했습니다. 따라서 단말의 SQLite 등 로컬 데이터와 Bluetooth 기반 단말 간 동기화가 필요했고, 네트워크가 연결된 상황에는 Spring Boot Backend와 PostgreSQL·Redis, 기업 내부·외부 연계 시스템을 활용했습니다. React WebView와 React Native/Native Bridge가 결합된 구조여서 화면·Native·서버 사이의 데이터 흐름을 함께 고려해야 했습니다.
+
+또한 기내식·객실 업무 등 여러 업무 기능이 외부 시스템과 연계되어, **인터페이스 명세 협의부터 통합 테스트와 오류 대응까지** 개발 조직 간 조율이 중요했습니다.
+
+**담당 범위:** Full-stack 개발, Application Architecture 검토, Offline/Bluetooth 동기화 안정화, 외부 시스템 인터페이스 설계·조율 및 **UM Letter 기능 전체 설계**. UM Letter의 상세 업무 흐름과 내부 데이터 구조는 별도 설명 없이 추정하지 않았습니다.
+
 ## Tech Stack
 
 | 영역 | 기술 |

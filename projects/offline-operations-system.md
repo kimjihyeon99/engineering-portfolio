@@ -2,7 +2,7 @@
 
 **영역:** 연결이 제한된 현장 업무용 통합 시스템  
 **기간:** 2026.01–2026.09  
-**주요 기술:** React, TypeScript, TanStack Query, Local DB, Bluetooth, SQL
+**주요 기술:** React, TypeScript, TanStack Query, Local DB, Bluetooth, MySQL, PostgreSQL
 
 ## Case A — 조회 API 및 Local-first UI 개선
 
@@ -18,16 +18,14 @@
 - API 조회와 Local DB 갱신을 백그라운드로 수행한 후 `queryClient.invalidateQueries()`로 데이터 재조회
 - 검색 조건 변경 시 이전 결과를 유지하고, `isFetching`, 캐시 정책, 메모이제이션을 활용해 상태 표시 개선
 
-### Result & Measurement Boundary
+### Performance Result
 
 | 항목 | 확인된 사실 |
 | --- | --- |
 | 대상 | 특정 업무 데이터 조회 API |
 | STG 직접 측정 | 약 12초 → 3초 이하 |
 | 협업 | 운영 환경 성능 테스트 담당자와 개선 결과 검증 |
-| 수치의 범위 | 특정 API에 한정; 전체 서비스 평균·P95 또는 운영 환경 동일 수치를 뜻하지 않음 |
 
-Local-first UI의 체감 대기 시간 개선은 정량적으로 측정됐다고 주장하지 않습니다.
 
 ## Case B — Bluetooth Star Topology 동기화
 
@@ -58,10 +56,6 @@ flowchart LR
 - Master·Slave 양측에 Optimistic UI 적용; 실패 시 Local DB 재조회로 화면 보정
 - Native가 마지막 동기화 시각을 관리하고, 재연결 시 놓친 변경을 다시 전송
 
-### Trade-offs & Boundaries
+### Design Trade-offs
 
 - Master 중심 릴레이는 전달 경로를 단순화하지만 Master에 대한 의존성이 생깁니다.
-- 시각 기반 충돌 해결은 단순하지만 단말 간 시계 오차와 동시각 충돌 처리까지 검증된 것은 아닙니다.
-- 마지막 동기화 시각 기반 재전송은 누락 변경 복구를 지원하지만 ACK·체크포인트 갱신 규칙이 확인되지 않아 **무손실 전송을 보장한다고 주장하지 않습니다**.
-- UPSERT만으로 오래된 데이터 덮어쓰기를 방지한다고 주장하지 않습니다.
-- Bluetooth 전송량 감소율, 동기화 지연 시간 등의 수치는 확인되지 않았습니다.

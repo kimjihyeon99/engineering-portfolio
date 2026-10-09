@@ -6,8 +6,6 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 
 기업용 서비스에서 백엔드·프론트엔드 개발과 외부 시스템 연동을 수행했습니다. 문제의 원인을 분석하고, 설계상의 선택과 제약을 설명할 수 있는 구현을 지향합니다.
 
-> 이 저장소는 공개용 포트폴리오입니다. 고객사명, 비공개 소스 코드, 내부 주소·설정·인증 정보는 포함하지 않습니다. 수치와 개인 기여는 확인된 범위에서만 작성했습니다.
-
 ## Selected Engineering Cases
 
 | 프로젝트 | 핵심 문제 | 직접 기여 및 확인된 결과 |
@@ -27,10 +25,10 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 
 프로젝트별 실제 사용 기술은 각 상세 문서에 따로 표기했습니다. 아래는 대표 경험 중심이며, 모든 기술의 숙련도가 동일하다는 의미는 아닙니다.
 
-- **Backend:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, Project Reactor, SQL
+- **Backend:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, Project Reactor, MySQL, PostgreSQL
 - **Frontend:** React, TypeScript, TanStack Query
 - **AI & Cloud:** Gemini, GCP Vertex AI, Azure OpenAI, Provider SDK / REST API
-- **Data & Operations:** RDB, Local DB, Redis, Docker, Kubernetes
+- **Data & Operations:** MySQL, PostgreSQL, Local DB, Redis, Docker, Kubernetes
 
 > **측정 범위:** 약 12초 → 3초 이하 수치는 특정 조회 API의 STG 환경 직접 측정 결과입니다. 운영 환경에서는 성능 테스트 담당자와 별도 검증 협업을 진행했으며, 동일 수치의 운영 환경 재현 여부는 이 문서에서 주장하지 않습니다.
 

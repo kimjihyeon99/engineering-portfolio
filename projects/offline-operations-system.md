@@ -45,12 +45,13 @@ flowchart LR
 - **Data:** 서버 PostgreSQL·Redis, 단말 SQLite 및 로컬 캐시
 - **Offline:** Bluetooth 기반 단말 간 변경 데이터 동기화
 
-### Decision 4 — UM Letter 전체 설계 책임
+### Decision 4 — UM Letter: 비동기 TMS 결과 조회와 Admin·App 상태 일관성
 
-- **Context:** UM Letter 업무를 시스템 기능으로 구현하기 위한 전체 설계가 필요했습니다.
-- **Decision & Ownership:** UM Letter 기능의 **전체 설계를 직접 담당**했습니다. 개별 화면이나 API 개발에 국한된 참여가 아니라 해당 업무 기능의 설계 전반을 책임진 경험입니다.
-- **Technical Leadership:** 업무 기능 전체를 하나의 설계 범위로 보고 구조와 구현 방향을 정리한 사례입니다.
-- **Further Detail:** 업무 흐름, 데이터 모델, 연계 인터페이스 및 예외 처리의 구체적인 설계 내용은 상세 범위가 정리되면 별도 Case Study로 확장할 수 있습니다.
+- **Context:** UM Letter 전송 과정에서 TMS 전송 요청 API의 성공 응답과 실제 전송 처리의 최종 결과는 별개였습니다. TMS 결과 조회 API에 최종 상태가 언제 반영되는지 예측하기 어려웠습니다.
+- **Core Challenge:** 결과가 확정되지 않은 시점에 조회하면 최신 결과를 얻지 못할 수 있지만, 확정될 때까지 동기식으로 기다리면 Admin과 App의 응답이 지연될 수 있습니다. 두 채널에 **정확한 최종 결과를 가능한 빠르게 제공하는 조회·상태 관리 방식**이 핵심 설계 과제였습니다.
+- **Design Considerations:** 전송 요청 접수와 최종 처리 완료의 구분, 결과 미확정 상태의 표현, 결과 조회 시점과 재조회 정책, Admin·App 간 상태 일관성 및 사용자 응답 속도 사이의 Trade-off를 검토해야 했습니다.
+- **Ownership:** UM Letter 기능의 **전체 설계를 직접 담당**했으며, 특히 결과 확정 시점을 알 수 없는 외부 TMS와 두 사용자 채널 사이의 상태 전달 문제를 해결하기 위한 설계 방향을 모색했습니다.
+- **Implementation Detail:** 최종 선택한 조회 방식과 상태 갱신 구현은 구체적인 적용 방식을 확인한 뒤 보강할 예정입니다.
 
 ## Case A — 조회 API 및 Local-first UI 개선
 

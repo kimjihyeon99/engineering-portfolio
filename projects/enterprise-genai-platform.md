@@ -4,6 +4,16 @@
 **기간:** 2025.07–2025.12  
 **주요 기술:** Java, Spring Boot, Project Reactor (Flux), Gemini, GCP Vertex AI, Azure OpenAI
 
+## Project Background — 어떤 서비스였나
+
+기업 내부 사용자가 **생성형 AI 과제를 신청하고, 승인받은 뒤 필요한 클라우드 환경과 LLM을 검증하는 사내 플랫폼** 구축 프로젝트입니다. 기존에는 과제 등록·결재·인프라 준비·모델 검증 과정이 각각 분리되어 있어, 사용자가 AI 실험 환경을 사용하기까지 여러 업무 단계와 시스템을 거쳐야 했습니다.
+
+플랫폼은 **React 기반 사용자 화면과 Spring Boot 애플리케이션**으로 업무 흐름을 연결하고, 승인 이후 기존 인프라 자동화 인터페이스를 통해 클라우드 자원 준비를 요청했습니다. 애플리케이션은 AWS 환경에서 운영되며 GCP Vertex AI 및 Azure OpenAI 등의 AI 서비스를 호출하는 Cross-Cloud 구성이었습니다. 사용자는 공통 Playground에서 여러 Provider의 모델을 사용할 수 있도록 설계했습니다.
+
+**프로젝트에서 해결해야 했던 과제**는 모델 API 연결 자체보다, 기업의 승인·보안·자원·비용 정책을 지키면서 여러 AI Provider를 하나의 서비스 경험으로 제공하는 것이었습니다.
+
+**담당 범위:** React/Spring Boot Full-stack 개발, Multi-LLM 공통 아키텍처 설계와 핵심 호출 흐름 구현, 업무 Workflow 및 인프라 연계 협업. 모델별 연동과 인프라 자동화 전체는 팀 단위 구현 범위를 포함합니다.
+
 ## Tech Stack
 
 | 영역 | 기술 |

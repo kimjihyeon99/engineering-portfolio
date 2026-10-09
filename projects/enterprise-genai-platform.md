@@ -137,3 +137,7 @@ flowchart TD
 | 여러 Provider를 공통 애플리케이션 흐름에서 제공 | SDK와 REST API 연동 방식별 유지보수 필요 |
 | 운영자가 모델 정보를 쉽게 관리하고 사용량 제한 정책 조정 가능 | 사용량 정책 변경은 코드 수정이 필요할 수 있음 |
 | 인프라 자동화와 업무 승인 책임 분리 | 프로비저닝 실패 시 담당자 수동 조치 필요 |
+
+## Editable Draw.io Architecture Diagrams
+
+- **Multi-LLM 라우팅 및 모델 관리:** [Draw.io 원본](../diagrams/genai-routing.drawio) · [diagrams.net에서 열기](https://app.diagrams.net/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkimjihyeon99%2Fengineering-portfolio%2Fmain%2Fdiagrams%2Fgenai-routing.drawio)

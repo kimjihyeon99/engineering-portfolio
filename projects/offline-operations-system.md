@@ -188,3 +188,8 @@ flowchart LR
 - LWW 적용 전 Bluetooth 송신 데이터가 수신 단말에 예측하기 어렵게 덮어써지는 현상을 발견했습니다. **업무 Key 기반 Merge, 엄격한 Unique Key 관리, UPDATE 시각 기반 LWW**를 적용했습니다. LWW는 이전 변경 이력을 모두 보존해야 하는 업무에는 적합하지 않을 수 있습니다.
 - 특정 조회 API는 디버깅으로 API 전달 경로가 아닌 **MyBatis SQL 실행 구간**을 병목으로 확인했습니다. 조회 SQL 조건에 맞는 인덱스를 적용해 STG 응답 시간을 **약 12초에서 3초 이하**로 개선했습니다. 인덱스 유지 비용은 트레이드오프입니다.
 - Splash 단계 일괄 Local DB 정리 대신 업무 화면 진입 시 해당 데이터만 정리하도록 제안했습니다. 업무별 데이터가 독립적으로 관리된다는 점과 초기 부하 집중 위험을 근거로 타 조직 Solution Architect·고객과 협의했습니다. 업무 최초 진입 시 정리 비용은 남습니다.
+
+## Editable Draw.io Architecture Diagrams
+
+- **UM Letter 비동기 결과 조회:** [Draw.io 원본](../diagrams/um-letter-async.drawio) · [diagrams.net에서 열기](https://app.diagrams.net/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkimjihyeon99%2Fengineering-portfolio%2Fmain%2Fdiagrams%2Fum-letter-async.drawio)
+- **Bluetooth 업무 Key 기반 Merge:** [Draw.io 원본](../diagrams/bluetooth-merge.drawio) · [diagrams.net에서 열기](https://app.diagrams.net/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkimjihyeon99%2Fengineering-portfolio%2Fmain%2Fdiagrams%2Fbluetooth-merge.drawio)

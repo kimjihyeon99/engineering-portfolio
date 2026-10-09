@@ -4,6 +4,17 @@
 **기간:** 2025.07–2025.12  
 **주요 기술:** Java, Spring Boot, Project Reactor (Flux), Gemini, GCP Vertex AI, Azure OpenAI
 
+## Tech Stack
+
+| 영역 | 기술 |
+| --- | --- |
+| Frontend | React, TypeScript, Vite, MUI, Zustand, React Query |
+| Backend | Java, Spring Boot, MyBatis, Project Reactor (Flux), HikariCP |
+| AI / Models | Gemini, Claude, Llama, GPT, Google Gen AI SDK, Anthropic Java SDK, Azure OpenAI SDK, Vertex AI, GoogleCredentials |
+| Batch / Scheduling | Spring Batch, Quartz |
+| Data | Greenplum, Multi DataSource |
+| Cloud | AWS, GCP, Azure |
+
 ## Problem
 
 여러 AI Provider의 모델 호출 방식과 스트리밍 이벤트가 달라, 통합된 API와 모델 확장 구조가 필요했습니다. 또한 기업 환경의 접근 정책, 리소스 프로비저닝 및 이미지 생성 사용량 통제가 요구됐습니다.

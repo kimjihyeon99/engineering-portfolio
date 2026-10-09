@@ -4,6 +4,17 @@
 **기간:** 2026.01–2026.09  
 **주요 기술:** Java, Spring Boot, React, TypeScript, React Native, TanStack Query, PostgreSQL, Redis, SQLite, Bluetooth
 
+## Tech Stack
+
+| 영역 | 기술 |
+| --- | --- |
+| Mobile / Frontend | React, TypeScript, React Native, WebView, TanStack Query |
+| Backend | Java, Spring Boot, REST API |
+| Database / Cache | PostgreSQL, Redis, SQLite, WebCache |
+| Offline / Native | Native Bridge, Bluetooth Sync |
+| Enterprise Integration | API Gateway, EAI, ERP, External API |
+| Cloud / Delivery | AWS, S3, CDN |
+
 ## System Architecture
 
 이 시스템은 **React/TypeScript 기반 Hybrid App**, **Java/Spring Boot Backend**, **Local DB 및 Bluetooth 동기화**, **기업 내외부 시스템 연계**로 구성됐습니다. 모바일 화면뿐 아니라 백엔드 API, 데이터 저장소, 외부 시스템 인터페이스까지 연결되는 Full-stack 개발 환경이었습니다.

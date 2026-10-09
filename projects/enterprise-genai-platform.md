@@ -14,6 +14,15 @@
 
 **담당 범위:** React/Spring Boot Full-stack 개발, Multi-LLM 공통 아키텍처 설계와 핵심 호출 흐름 구현, 업무 Workflow 및 인프라 연계 협업. 모델별 연동과 인프라 자동화 전체는 팀 단위 구현 범위를 포함함.
 
+## Architecture Diagrams
+
+### Multi-LLM 라우팅 구조
+
+![Multi-LLM 라우팅 구조](../diagrams/genai-routing.svg)
+
+[Draw.io 편집 원본](../diagrams/genai-routing.drawio)
+
+
 ## Tech Stack
 
 | 영역 | 기술 |

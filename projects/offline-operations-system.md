@@ -58,7 +58,7 @@ flowchart LR
 - **Ownership & Impact:** **UM Letter 기능 전체 설계를 직접 담당**했고, 결과 확정 시점이 불명확한 외부 시스템의 특성을 고려해 비동기 처리와 내부 DB 조회 중심의 구조를 결정했음. 정확한 반영 지연이나 성능 개선 수치는 별도로 측정·확인된 값만 제시함.
 
 
-## Case A — 조회 API 및 Local-first UI 개선
+## Case A — 기내식 탑재량·갤리 정보 조회 API 및 Local-first UI 개선
 
 ### Technical Leadership & Architecture Decisions
 
@@ -90,7 +90,7 @@ flowchart LR
 
 ## Problem
 
-특정 업무 데이터 조회 API가 약 12초의 응답 지연을 보였음. 화면 진입·재진입 시 API 응답과 Local DB 갱신 완료를 기다리면서 기존 저장 데이터를 빠르게 표시하지 못했고, 검색 조건 변경 중 이전 결과가 사라지는 문제가 있었음.
+기내식 탑재량(Meal Inventory)·갤리 정보(Galley Information) 조회 관련 API에서 응답 지연이 발생했음. 이 성능 개선은 Bluetooth 동기화가 아닌 **서버 조회 API 및 DB SQL 최적화** 사례임. 화면 진입·재진입 시 API 응답과 Local DB 갱신 완료를 기다리면서 기존 저장 데이터를 빠르게 표시하지 못했고, 검색 조건 변경 중 이전 결과가 사라지는 문제가 있었음.
 
 ### My Contributions
 
@@ -102,9 +102,12 @@ flowchart LR
 
 ### Performance Result
 
+**기내식 탑재량·갤리 정보 조회 성능 개선:** 디버깅 결과 API 요청·응답 전달 경로가 아니라 MyBatis SQL 실행 구간에서 병목 확인. 조회 SQL 조건을 기준으로 인덱스 적용. STG에서 특정 조회 API 응답 **약 12초 → 3초 이하**로 개선함. Bluetooth 동기화와 별개인 서버 조회 성능 개선 사례임.
+
+
 | 항목 | 확인된 사실 |
 | --- | --- |
-| 대상 | 특정 업무 데이터 조회 API |
+| 대상 | 기내식 탑재량·갤리 정보 조회 관련 특정 API |
 | STG 직접 측정 | 약 12초 → 3초 이하 |
 | 협업 | 운영 환경 성능 테스트 담당자와 개선 결과 검증 |
 
@@ -176,7 +179,7 @@ sequenceDiagram
 - **응답성:** Admin·App이 외부 TMS의 결과 확정을 동기적으로 기다리지 않도록 조회 경로를 분리했음.
 - **한계:** 화면 첫 조회에는 기존 DB 상태가 표시될 수 있고, 결과 미확정 건은 다음 화면 진입 시 다시 확인함.
 
-## Implementation — Bluetooth 병합 및 SQL 병목 분석
+## Implementation — Bluetooth 병합 및 정합성 관리
 
 ```mermaid
 flowchart LR
@@ -188,7 +191,7 @@ flowchart LR
 ```
 
 - LWW 적용 전 Bluetooth 송신 데이터가 수신 단말에 예측하기 어렵게 덮어써지는 현상을 발견했음. **업무 Key 기반 Merge, 엄격한 Unique Key 관리, UPDATE 시각 기반 LWW**를 적용했음. LWW는 이전 변경 이력을 모두 보존해야 하는 업무에는 적합하지 않을 수 있음.
-- 특정 조회 API는 디버깅으로 API 전달 경로가 아닌 **MyBatis SQL 실행 구간**을 병목으로 확인했음. 조회 SQL 조건에 맞는 인덱스를 적용해 STG 응답 시간을 **약 12초에서 3초 이하**로 개선했음. 인덱스 유지 비용은 트레이드오프임.
+- 
 - Splash 단계 일괄 Local DB 정리 대신 업무 화면 진입 시 해당 데이터만 정리하도록 제안했음. 업무별 데이터가 독립적으로 관리된다는 점과 초기 부하 집중 위험을 근거로 타 조직 Solution Architect·고객과 협의했음. 업무 최초 진입 시 정리 비용은 남습니다.
 
 ## Editable Draw.io Architecture Diagrams

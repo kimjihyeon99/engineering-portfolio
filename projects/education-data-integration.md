@@ -93,3 +93,7 @@ flowchart TD
 | 트랜잭션 실패 시 기존 데이터 보존 | 외부 API 성공 응답 자체의 데이터 완전성은 별도 검증 필요 |
 | 최대 3회 재시도로 일시적 외부 호출 오류 대응 | 장애 지속 시 호출량·처리 시간 증가 |
 | EFK 로그를 통한 외부 연계 오류 분석 | 최종 장애 원인은 확인된 범위에서만 설명 |
+
+## Editable Draw.io Architecture Diagrams
+
+- **Batch 트랜잭션 및 장애 복구:** [Draw.io 원본](../diagrams/aidt-batch-reliability.drawio) · [diagrams.net에서 열기](https://app.diagrams.net/?url=https%3A%2F%2Fraw.githubusercontent.com%2Fkimjihyeon99%2Fengineering-portfolio%2Fmain%2Fdiagrams%2Faidt-batch-reliability.drawio)

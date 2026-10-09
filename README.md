@@ -12,7 +12,7 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 | --- | --- | --- |
 | [Enterprise GenAI Platform](projects/enterprise-genai-platform.md) | 서로 다른 AI Provider의 호출·응답 통합과 기업용 모델 관리 | Multi-LLM 아키텍처 설계, Gemini 연동 검증·시연, 라우팅·DTO·Flux 스트리밍·모델 관리·이미지 생성 사용량 제한 구현 |
 | [Online/Offline Operations System](projects/offline-operations-system.md) | 온라인·오프라인 전환을 고려한 업무 연속성, 조회 지연과 단말 간 데이터 정합성 | 특정 조회 API **약 12초 → 3초 이하** (특정 조회 API 직접 측정); Local-first UI, 온라인·오프라인 상태 전환 대응, Bluetooth 기반 증분 동기화 |
-| [Education Data Integration](projects/education-data-integration.md) | 외부 API 장애·지연이 사용자 조회에 미치는 영향 | Spring Batch 사전 적재, MySQL 우선 조회, 트랜잭션 기반 데이터 교체 및 실패 시 기존 데이터 유지 |
+| [Education Data Integration](projects/education-data-integration.md) | 특일 정보 외부 API의 지연·장애에 대비한 데이터 수집 | 공공데이터포털 특일 정보 API 정기 수집, MySQL 적재, 트랜잭션 기반 교체 및 실패 시 기존 데이터 유지 |
 
 ## Core Strengths
 

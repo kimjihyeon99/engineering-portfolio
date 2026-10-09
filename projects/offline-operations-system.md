@@ -2,7 +2,27 @@
 
 **영역:** 연결이 제한된 현장 업무용 통합 시스템  
 **기간:** 2026.01–2026.09  
-**주요 기술:** React, TypeScript, TanStack Query, Local DB, Bluetooth, MySQL, PostgreSQL
+**주요 기술:** Java, Spring Boot, React, TypeScript, React Native, TanStack Query, PostgreSQL, Redis, SQLite, Bluetooth
+
+## System Architecture
+
+이 시스템은 **React/TypeScript 기반 Hybrid App**, **Java/Spring Boot Backend**, **Local DB 및 Bluetooth 동기화**, **기업 내외부 시스템 연계**로 구성됐습니다. 모바일 화면뿐 아니라 백엔드 API, 데이터 저장소, 외부 시스템 인터페이스까지 연결되는 Full-stack 개발 환경이었습니다.
+
+```mermaid
+flowchart LR
+    UI[React / TypeScript WebView] <--> N[React Native / Native Bridge]
+    N <--> L[(SQLite / Local Data)]
+    N <--> BT[Bluetooth Peer Sync]
+    UI --> API[Spring Boot REST API]
+    API <--> DB[(PostgreSQL)]
+    API <--> CACHE[(Redis)]
+    API <--> EXT[Enterprise Integration APIs]
+```
+
+- **Mobile:** React WebView와 React Native/Native Bridge를 통한 현장 업무 처리
+- **Backend:** Spring Boot REST API 및 외부 시스템 인터페이스
+- **Data:** 서버 PostgreSQL·Redis, 단말 SQLite 및 로컬 캐시
+- **Offline:** Bluetooth 기반 단말 간 변경 데이터 동기화
 
 ## Case A — 조회 API 및 Local-first UI 개선
 

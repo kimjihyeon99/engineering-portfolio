@@ -12,6 +12,15 @@
 
 **담당 범위:** Full-stack 개발과 운영, 외부 API 데이터 수집·조회 구조 직접 설계 및 구현, 운영 이슈 분석과 개선. 구축부터 운영까지 이어진 경험이 핵심임.
 
+## Architecture Diagrams
+
+### Batch 수집 및 장애 복구
+
+![Batch 수집 및 장애 복구](../diagrams/aidt-batch-reliability.svg)
+
+[Draw.io 편집 원본](../diagrams/aidt-batch-reliability.drawio)
+
+
 ## Tech Stack
 
 - **Frontend / Admin:** React, TypeScript, React Admin, Zustand, Recoil

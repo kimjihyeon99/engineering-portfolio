@@ -4,6 +4,14 @@
 **기간:** 2024.03–2025.06  
 **주요 기술:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, RDB
 
+## Tech Stack
+
+- **Frontend / Admin:** React, TypeScript, React Admin, Zustand, Recoil
+- **Backend:** Java, Spring Boot, Spring Batch, MyBatis, Feign Client
+- **Database / Cache:** MySQL, Redis
+- **Cloud / Operations:** Naver Cloud, EFK, GitLab CI/CD
+- **API / Quality:** Swagger, CSAP, Sparrow
+
 ## Problem
 
 외부 API의 간헐적인 장애와 응답 지연이 사용자 조회에 영향을 줄 수 있었습니다. 사용자 요청과 외부 시스템 호출을 분리하고, 데이터 갱신 실패 시에도 기존 데이터를 제공할 수 있는 구조가 필요했습니다.

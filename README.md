@@ -30,8 +30,6 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 - **AI & Cloud:** Gemini, GCP Vertex AI, Azure OpenAI, Provider SDK / REST API
 - **Data & Operations:** MySQL, PostgreSQL, Local DB, Redis, Docker, Kubernetes
 
-> **측정 범위:** 약 12초 → 3초 이하 수치는 특정 조회 API의 STG 환경 직접 측정 결과입니다. 운영 환경에서는 성능 테스트 담당자와 별도 검증 협업을 진행했으며, 동일 수치의 운영 환경 재현 여부는 이 문서에서 주장하지 않습니다.
-
 ## Engineering Approach
 
 1. **Separate failure domains:** 외부 시스템 호출과 사용자 요청 처리의 결합을 줄입니다.

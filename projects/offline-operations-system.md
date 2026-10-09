@@ -14,6 +14,21 @@
 
 **담당 범위:** Full-stack 개발, Application Architecture 검토, Offline/Bluetooth 동기화 안정화, 외부 시스템 인터페이스 설계·조율 및 **UM Letter 기능 전체 설계**. UM Letter의 상세 업무 흐름과 내부 데이터 구조는 별도 설명 없이 추정하지 않았습니다.
 
+## Architecture Diagrams
+
+### UM Letter 비동기 상태 관리
+
+![UM Letter 비동기 상태 관리](../diagrams/um-letter-async.svg)
+
+[Draw.io 편집 원본](../diagrams/um-letter-async.drawio)
+
+### Bluetooth 변경 데이터 병합
+
+![Bluetooth 변경 데이터 병합](../diagrams/bluetooth-merge.svg)
+
+[Draw.io 편집 원본](../diagrams/bluetooth-merge.drawio)
+
+
 ## Tech Stack
 
 | 영역 | 기술 |

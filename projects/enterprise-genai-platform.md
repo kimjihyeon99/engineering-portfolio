@@ -36,11 +36,36 @@ Gemini, GPT, Claude, Llama 등은 SDK 지원 범위와 요청·응답 형식이 
 
 사용자별 하루 이미지 생성 10회 제한과 DB 기반 생성 이력·횟수 관리를 구현함. 모델 정보는 DB에서 관리했으나 사용량 제한 정책의 변경은 소스 수정이 필요한 구조였음.
 
-## 구현 구조
+## 구현 구조 — 실제 연동 모델과 요청 조건
 
-![Provider와 서비스 유형에 따른 Multi-LLM 라우팅](../diagrams/genai-routing.svg)
+![Cloud·Provider·서비스 유형별 모델 라우팅](../diagrams/genai-routing.svg)
 
 [Draw.io 원본 편집](../diagrams/genai-routing.drawio)
+
+그림은 **Provider와 서비스 유형을 조합해 호출 경로를 선택**하는 구조를 나타냄. GCP Vertex AI에서는 Google·Anthropic·Meta 모델을, Azure에서는 OpenAI 모델을 연동했음. 모델별 세부 API 호출 구현은 팀에서 나눠 진행했으며, **공통 라우팅 구조와 Gemini 연동을 직접 설계·구현하고 검증**했음.
+
+### 모델 연동 범위
+
+| Cloud | Provider / 모델 계열 | 프로젝트 모델 목록 예시 | 구분 |
+| --- | --- | --- | --- |
+| GCP | Google · Gemini | Gemini 2.5 Pro, Flash, Flash-Lite | 멀티모달 LLM |
+| GCP | Google · Imagen | Imagen 4 Generate, Fast | 이미지 생성 |
+| GCP | Anthropic · Claude | Opus 4, Sonnet 4, Haiku 3.5, Haiku 3 | LLM |
+| GCP | Meta · Llama | Llama 4 Maverick, Scout, Llama 3.1 405B | LLM |
+| Azure | OpenAI · GPT | GPT-4.1, 4.1 Mini, 4.1 Nano, GPT-4o | LLM |
+| Azure | OpenAI · DALL·E | DALL·E 3 | 이미지 생성 |
+
+위 목록은 **프로젝트 모델 관리 자료에 등록된 연동 대상**을 요약한 것임. Gemini 2.0 Flash 계열은 제공 자료에서 취소선으로 표시되어 목록에서 제외함. 모델 이름과 버전은 당시 프로젝트 자료 기준이며 현재 서비스 제공 여부나 최신 모델 목록을 의미하지 않음.
+
+### 모델별 설정 차이를 공통 구조로 처리한 이유
+
+- **Region:** 모델별 사용 Region이 서로 달랐음. 제공된 관리 자료에는 `us-central1`, `us-east5` 등이 포함됨.
+- **파일 전달 방식:** Gemini·GPT·Llama 등은 자료상 `Image URI`, Claude는 `Base64`로 구분되어 있었음. 따라서 멀티모달 입력을 동일한 요청 객체만으로 모든 Provider에 전달할 수는 없었음.
+- **허용 입력 형식:** 이미지 외에 동영상·문서·오디오를 받는 모델이 있었고, 허용 확장자도 모델별로 달랐음. 모델 선택 시 지원 형식에 맞는 요청을 구성해야 했음.
+- **최대 출력 토큰:** 자료에 Gemini 2.5 계열 `65,535`, Claude·Llama 계열 `4,096`, GPT-4.1 계열 `32,768` 등 서로 다른 값이 기재되어 있었음. 이 값은 **당시 프로젝트 관리 설정**이며 모델 자체의 현재 공식 한도와 동일하다고 단정하지 않음.
+- **응답 형태:** LLM의 텍스트 스트리밍은 공통 DTO와 Reactor `Flux`로 처리하고, 이미지 생성은 별도의 생성 결과 흐름으로 구분함.
+
+기존 모델의 버전 정보 갱신은 DB 설정 변경으로 처리할 수 있었으나, **새로운 서비스 유형 추가는 Provider 서비스 및 Backend 라우팅 구현 확장이 필요했음.**
 
 ## 결과와 한계
 

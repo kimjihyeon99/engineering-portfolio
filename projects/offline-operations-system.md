@@ -37,7 +37,35 @@ flowchart LR
 
 ## Case A — 조회 API 및 Local-first UI 개선
 
-### Problem
+### Technical Leadership & Architecture Decisions
+
+현장 업무 시스템에서는 화면·Native·Bluetooth·Backend·외부 시스템이 연결되어 있어, 한 계층의 수정만으로 문제를 해결하기 어려웠습니다. 기술적 선택뿐 아니라 **업무 규칙 확인, 타 조직 설계 검토, 인터페이스 협의**를 함께 수행했습니다.
+
+### Decision 1 — 업무 규칙 기반 Bluetooth 충돌 해결
+
+- **Context:** 오프라인 상태에서 Master와 여러 Slave가 같은 레코드를 변경할 수 있어 데이터 정합성 문제가 발생했습니다.
+- **Alternatives:** 모든 단말을 읽기 전용으로 제한하는 대신, 일반 데이터 수정은 허용하면서 충돌 시 유효한 변경을 선택하는 정책이 필요했습니다.
+- **Decision:** 기내식 주문에서 '마지막으로 수행한 변경이 유효하다'는 업무 규칙을 확인하고 UPDATE 시각 기반 Last-Write-Wins를 적용했습니다. Slave 변경은 Master의 Local DB에 반영한 뒤 다른 Slave로 전파했습니다.
+- **Trade-off:** 도메인 규칙과 일치하는 단순한 정책이지만, 모든 데이터에 보편적으로 적용할 수 있는 충돌 해결 방식은 아닙니다. 특정 일괄 저장 기능만 Master 수정·Slave 조회 전용으로 구분했습니다.
+- **Ownership & Impact:** 데이터 변경·전송 및 충돌 정책을 업무 규칙에 맞춰 구현·조정해 오프라인 동기화의 정합성을 개선했습니다.
+
+### Decision 2 — Startup 성능을 고려한 Local DB Lifecycle 설계 변경
+
+- **Context:** 타 조직에서 Splash 단계에 만료된 Local DB 데이터를 일괄 삭제하는 방안을 제안했습니다. 데이터 증가 시 앱 초기 진입 경로에 정리 작업이 집중될 위험이 있었습니다.
+- **Alternatives:** Splash 일괄 정리와 각 업무 화면 진입 시 해당 데이터만 정리하는 방식을 비교했습니다.
+- **Decision:** 업무별 진입 시점에 만료 데이터를 정리하는 대안을 제시했습니다. 타 조직의 Solution Architect 및 고객과 장단점을 협의해 최종 설계에 반영했습니다.
+- **Trade-off:** 초기 실행 경로의 작업을 분산하는 대신 업무 최초 진입 시 정리 비용이 발생하고, 미진입 업무의 만료 데이터는 즉시 삭제되지 않을 수 있습니다.
+- **Ownership & Impact:** 이미 제안된 설계의 성능 위험을 사전에 발견하고, 대안을 제시·조율해 설계 변경으로 연결했습니다. 실제 Startup 시간 개선 수치를 주장하지 않습니다.
+
+### Decision 3 — 계층 간 데이터 흐름과 외부 연계의 책임 분리
+
+- **Context:** 대용량 데이터와 Background 요청이 겹치면서 Bluetooth 통신 안정성에 영향을 주었고, Mobile·Admin·Partner 및 외부 시스템마다 인터페이스와 보안 요구가 달랐습니다.
+- **Alternatives:** Native 통신만 수정하기보다 React WebView → Native → Bluetooth → 상대 단말의 전체 흐름을 분석하고, 큰 Payload에만 Chunking을 적용하는 방식을 검토했습니다.
+- **Decision:** FE→Native 전달 데이터를 필요한 변경 중심으로 줄이고, 큰 Payload에 선택적 Chunking을 적용했습니다. 대량 Reference 다운로드와 문서·이미지 다운로드 Queue를 분리했습니다. 채널별 요구에 따라 BFF를 분리하고 외부 API 명세·통합 테스트·오류 대응을 조율했습니다.
+- **Trade-off:** 데이터 전송·다운로드 간 간섭을 줄이는 대신 Chunking 재조립, Queue별 상태 관리, 외부 인터페이스 실패 처리의 복잡도가 증가합니다.
+- **Ownership & Impact:** FE·Native 데이터 흐름 개선과 외부 시스템 인터페이스 설계·조율에 참여했습니다. 타 팀의 Native 구현 전체를 단독 소유했다고 주장하지 않습니다.
+
+## Problem
 
 특정 업무 데이터 조회 API가 약 12초의 응답 지연을 보였습니다. 화면 진입·재진입 시 API 응답과 Local DB 갱신 완료를 기다리면서 기존 저장 데이터를 빠르게 표시하지 못했고, 검색 조건 변경 중 이전 결과가 사라지는 문제가 있었습니다.
 

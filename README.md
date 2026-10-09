@@ -42,3 +42,9 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 - [Enterprise GenAI Platform — Architecture & Implementation](projects/enterprise-genai-platform.md)
 - [Offline-first Operations System — Performance & Synchronization](projects/offline-operations-system.md)
 - [Education Data Integration — Batch & Reliability](projects/education-data-integration.md)
+
+## Collaboration & Engineering Communication
+
+**Tools:** Slack · Jira · Figma
+
+Slack, Jira, Figma를 활용한 협업 환경에 익숙합니다. 기획·디자인·Frontend·Backend·인프라·외부 연계 담당자와 요구사항 및 인터페이스를 협의하고, 설계 대안·기술적 제약·통합 테스트 이슈를 공유하며 개발했습니다. 특히 오프라인 데이터 정리 정책과 외부 연계 설계에서 타 조직 Solution Architect 및 고객과 협의해 설계 변경을 이끌었습니다.

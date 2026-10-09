@@ -35,6 +35,13 @@ flowchart LR
 - **Data:** 서버 PostgreSQL·Redis, 단말 SQLite 및 로컬 캐시
 - **Offline:** Bluetooth 기반 단말 간 변경 데이터 동기화
 
+### Decision 4 — UM Letter 전체 설계 책임
+
+- **Context:** UM Letter 업무를 시스템 기능으로 구현하기 위한 전체 설계가 필요했습니다.
+- **Decision & Ownership:** UM Letter 기능의 **전체 설계를 직접 담당**했습니다. 개별 화면이나 API 개발에 국한된 참여가 아니라 해당 업무 기능의 설계 전반을 책임진 경험입니다.
+- **Technical Leadership:** 업무 기능 전체를 하나의 설계 범위로 보고 구조와 구현 방향을 정리한 사례입니다.
+- **Further Detail:** 업무 흐름, 데이터 모델, 연계 인터페이스 및 예외 처리의 구체적인 설계 내용은 상세 범위가 정리되면 별도 Case Study로 확장할 수 있습니다.
+
 ## Case A — 조회 API 및 Local-first UI 개선
 
 ### Technical Leadership & Architecture Decisions

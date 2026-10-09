@@ -11,7 +11,7 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 | 프로젝트 | 핵심 문제 | 직접 기여 및 확인된 결과 |
 | --- | --- | --- |
 | [Enterprise GenAI Platform](projects/enterprise-genai-platform.md) | 서로 다른 AI Provider의 호출·응답 통합과 기업용 모델 관리 | Multi-LLM 아키텍처 설계, Gemini 연동 검증·시연, 라우팅·DTO·Flux 스트리밍·모델 관리·이미지 생성 사용량 제한 구현 |
-| [Online/Offline Operations System](projects/offline-operations-system.md) | 온라인·오프라인 전환을 고려한 업무 연속성, 조회 지연과 단말 간 데이터 정합성 | 특정 조회 API **약 12초 → 3초 이하** (STG 직접 측정); Local-first UI, 온라인·오프라인 상태 전환 대응, Bluetooth 기반 증분 동기화 |
+| [Online/Offline Operations System](projects/offline-operations-system.md) | 온라인·오프라인 전환을 고려한 업무 연속성, 조회 지연과 단말 간 데이터 정합성 | 특정 조회 API **약 12초 → 3초 이하** (특정 조회 API 직접 측정); Local-first UI, 온라인·오프라인 상태 전환 대응, Bluetooth 기반 증분 동기화 |
 | [Education Data Integration](projects/education-data-integration.md) | 외부 API 장애·지연이 사용자 조회에 미치는 영향 | Spring Batch 사전 적재, MySQL 우선 조회, 트랜잭션 기반 데이터 교체 및 실패 시 기존 데이터 유지 |
 
 ## Core Strengths
@@ -23,7 +23,7 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 
 ## Technical Skills
 
-프로젝트별 실제 사용 기술은 각 상세 문서에 따로 표기했음. 아래는 대표 경험 중심이며, 모든 기술의 숙련도가 동일하다는 의미는 아닙니다.
+프로젝트별 실제 사용 기술은 각 상세 문서에 따로 표기했음. 아래는 대표 경험 중심이며, 대표 기술을 정리함.
 
 - **Backend:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, Project Reactor, MySQL, PostgreSQL
 - **Frontend:** React, TypeScript, TanStack Query
@@ -47,4 +47,4 @@ Java / Spring Boot / React / TypeScript / Multi-LLM Integration
 
 **Tools:** Slack · Jira · Figma
 
-Slack, Jira, Figma를 활용한 협업 환경에 익숙함. 기획·디자인·Frontend·Backend·인프라·외부 연계 담당자와 요구사항 및 인터페이스를 협의하고, 설계 대안·기술적 제약·통합 테스트 이슈를 공유하며 개발했음. 특히 오프라인 데이터 정리 정책과 외부 연계 설계에서 타 조직 Solution Architect 및 고객과 협의해 설계 변경을 이끌었습니다.
+Slack, Jira, Figma를 활용한 협업 환경에 익숙함. 기획·디자인·Frontend·Backend·인프라·외부 연계 담당자와 요구사항 및 인터페이스를 협의하고, 설계 대안·기술적 제약·통합 테스트 이슈를 공유하며 개발했음. 특히 오프라인 데이터 정리 정책과 외부 연계 설계에서 타 조직 Solution Architect 및 고객과 협의해 설계 변경을 이끌었음.

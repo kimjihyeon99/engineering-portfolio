@@ -14,7 +14,7 @@
 ## 담당 역할
 - Full-stack 개발과 Application 구조·기술 설계 검토
 - 기술 검토 및 요구사항 조율, 시스템 간 연동 방식 설계·조율
-- 전체 설계 내용을 기준으로 AIND를 활용해 코드·설계 영향도를 분석하고 기술 의사결정 및 구현 검토
+- **Kiro 기반 SA Orchestrator**로 Architecture·Infra·API·DB 관점의 설계 검토를 구조화하고, ChatGPT로 기술 자료와 검토 결과를 교차 검증·보완
 - Native, Backend, Frontend, 연계 담당자와 통합 설계 및 테스트 협업
 
 ## 대표 사례 1. 특정 조회 API 성능 개선
@@ -59,3 +59,18 @@ Splash 시점에 모든 만료 데이터를 일괄 삭제하는 안은 데이터
 ## Architecture
 
 - [Offline / Bluetooth 동기화 구조 (draw.io)](../diagrams/offline-sync-architecture.drawio)
+
+## AI 활용 Engineering · Kiro SA Orchestrator
+요구사항과 프로젝트 설계 기준을 Spec으로 구체화하고, Kiro에서 **SA Orchestrator**를 구성해 다각도의 Architecture Review를 수행했습니다.
+
+- Architecture Reviewer: 구조·설계·SPOF
+- Infra Reviewer: 배포·스케일·장애
+- API Reviewer: 계약·보안·성능
+- DB Reviewer: 스키마·쿼리·트랜잭션
+- Risk Aggregator: Findings 취합·중복 제거·위험 레벨 분류·연관 관계 분석
+- Final SA Opinion: **GO / CONDITIONAL GO / NO-GO**
+- 최종 산출물: Architecture Review Report
+
+ChatGPT는 설계·기술 자료와 Review 결과의 **교차 검증 및 보완**에 활용했습니다. AI 결과는 그대로 적용하지 않고 기존 Architecture와 요구사항을 기준으로 직접 검증·수정했습니다.
+
+- [Kiro SA Orchestrator (draw.io)](../diagrams/sa-orchestrator.drawio)

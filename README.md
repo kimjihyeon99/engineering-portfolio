@@ -2,15 +2,15 @@
 
 **Software Engineer | Full-stack · Backend · Solution Architecture**
 
-Java / Spring Boot / React / TypeScript 기반으로 B2B·B2C 서비스의 설계, 개발, 테스트, 배포, 운영을 경험했습니다. 화면·API·데이터·시스템 연계를 하나의 흐름으로 보고, 실제 사용 환경과 업무 규칙을 기준으로 기술 대안을 검토해 설계와 구현에 반영해 왔습니다.
+Software Engineer로 서비스의 설계·개발·운영 전 주기를 경험했습니다. 화면·API·데이터·시스템 연계를 하나의 흐름으로 보고, 실제 사용 환경과 업무 규칙을 기준으로 기술 대안을 검토해 설계와 구현에 반영해 왔습니다.
 
-2025년 GenAI Platform 프로젝트부터는 Software Engineer로 개발을 수행하면서 **SA 역할(기술 검토, 요구사항 조율, Application 구조 검토, 기술 대안 제시, 시스템 간 연동 방식 설계·조율)**을 함께 담당했습니다.
+GenAI Platform 프로젝트부터는 SA 역할을 병행하며 **기술 검토, 요구사항 조율, Application 구조와 시스템 연동 방식의 설계·검토**까지 역할을 확장했습니다.
 
 ## Impact at a Glance
 - **8,000명+**: 항공 객실 업무 시스템 서비스 오픈·운영 대상 규모
 - **12초 이상 → 3초 이내**: 특정 조회 API의 데이터 접근 패턴 분석 및 Index 적용을 통한 응답 시간 개선
 - **12개 AI 모델 연동**: 여러 LLM/이미지 생성 모델을 공통 구조에서 사용할 수 있도록 연동
-- **AIND 활용**: GenAI Platform과 항공 프로젝트에서 전체 설계 내용을 바탕으로 코드·설계 영향도를 분석하고 기술 의사결정 및 구현 검토에 활용
+- **AIND / AI-assisted Engineering**: GenAI Platform과 항공 프로젝트에서 설계 변경 시 관련 Layer·API·DB 영향 범위를 분석하고, 구현 전 검토 및 코드 리뷰 보조에 활용
 
 ## Selected Engineering Cases
 | 프로젝트 | 핵심 문제 | 대표 기술 의사결정 / 결과 |

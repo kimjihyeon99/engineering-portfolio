@@ -10,7 +10,7 @@ GenAI Platform 프로젝트부터는 SA 역할을 병행하며 **기술 검토, 
 - **8,000명+**: 항공 객실 업무 시스템 서비스 오픈·운영 대상 규모
 - **12초 이상 → 3초 이내**: 특정 조회 API의 데이터 접근 패턴 분석 및 Index 적용을 통한 응답 시간 개선
 - **12개 AI 모델 연동**: 여러 LLM/이미지 생성 모델을 공통 구조에서 사용할 수 있도록 연동
-- **AIND / AI-assisted Engineering**: GenAI Platform과 항공 프로젝트에서 설계 변경 시 관련 Layer·API·DB 영향 범위를 분석하고, 구현 전 검토 및 코드 리뷰 보조에 활용
+- **AI 활용 Engineering / Spec-Driven Development**: 요구사항과 설계 기준을 Spec/Context로 구체화해 AI를 설계·구현·검증에 활용. 항공 프로젝트는 **Kiro SA Orchestrator + ChatGPT**, GenAI Platform은 **Cursor + Claude**로 교차 검증·보완
 
 ## Selected Engineering Cases
 | 프로젝트 | 핵심 문제 | 대표 기술 의사결정 / 결과 |
@@ -31,7 +31,7 @@ GenAI Platform 프로젝트부터는 SA 역할을 병행하며 **기술 검토, 
 - **LLM Integration:** Project Reactor / Flux, Vertex AI, Google Gen AI SDK, Anthropic Java SDK, Azure OpenAI SDK, Provider SDK / REST
 - **Integration:** Feign Client, Quartz, RabbitMQ, API Gateway, 이메일 전송 시스템(TMS), ERP 등 시스템 연계
 - **Infra / Operations:** AWS, GCP, Azure, Naver Cloud, Docker, Kubernetes, GitLab CI/CD, EFK(Elasticsearch · Fluent Bit · Kibana)
-- **AI-assisted Engineering:** AIND 기반 코드·설계 영향도 분석, 구현 검토 및 개발 생산성 향상
+- **AI-assisted Engineering:** Spec-Driven Development, Kiro SA Orchestrator, Cursor, ChatGPT·Claude 기반 교차 검증
 
 ## Project Details
 - [항공 객실 업무 통합 시스템](projects/offline-operations-system.md)

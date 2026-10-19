@@ -15,7 +15,7 @@
 - 공통 요청·응답 DTO와 Reactor Flux 스트리밍 구현
 - 모델 등록·버전 관리 및 이미지 생성 사용량 제한 구현
 - **12개 AI 모델 연동**
-- AIND를 활용해 **설계 변경 시 관련 Layer·API·DB 영향 범위를 분석**하고, 구현 전 검토 및 코드 리뷰 보조에 활용
+- **Cursor**를 개발 과정에 활용하고, **Claude**로 기술 자료 및 설계·구현 결과를 교차 검증·보완
 
 ## 대표 의사결정 1. Provider별 Service 분리
 Provider마다 SDK 지원 범위, 인증, 요청·응답 형식이 달랐습니다. 상위 업무 로직에 Provider별 차이를 직접 노출하지 않고 AiService에서 Provider와 서비스 유형을 기준으로 호출 경로를 결정하고, Provider Service에서 공통 DTO로 변환하도록 설계했습니다.
@@ -53,3 +53,8 @@ Google, Anthropic, Meta, OpenAI 계열의 LLM과 이미지 생성 모델을 연�
 ## Architecture
 
 - [Multi-LLM 연동 구조 (draw.io)](../diagrams/multi-llm-architecture.drawio)
+
+## AI 활용 Engineering · Cursor + Claude
+요구사항과 프로젝트 설계 기준을 Context로 제공해 Cursor를 구현 과정에 활용했습니다. Claude는 관련 기술 자료와 설계·구현 결과를 별도로 검증하고 보완하는 데 사용했습니다.
+
+AI가 제안한 결과를 그대로 적용하지 않고, 프로젝트 요구사항과 기존 시스템 구조에 맞는지 직접 검토한 뒤 실제 개발에 반영했습니다.

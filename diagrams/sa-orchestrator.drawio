@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2026-10-19T00:00:00.000Z" agent="ChatGPT" version="24.7.17">
+<diagram id="sa-orchestrator" name="SA Orchestrator">
+<mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="2" value="사용자 요청" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1"><mxGeometry x="315" y="40" width="220" height="55" as="geometry"/></mxCell>
+<mxCell id="3" value="SA Orchestrator&#xa;Kiro + Spec Context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1"><mxGeometry x="295" y="130" width="260" height="70" as="geometry"/></mxCell>
+<mxCell id="4" value="Architecture Reviewer&#xa;구조 · 설계 · SPOF" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" vertex="1" parent="1"><mxGeometry x="295" y="240" width="260" height="70" as="geometry"/></mxCell>
+<mxCell id="5" value="Infra Reviewer&#xa;배포 · 스케일 · 장애" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="1"><mxGeometry x="90" y="360" width="250" height="70" as="geometry"/></mxCell>
+<mxCell id="6" value="API Reviewer&#xa;계약 · 보안 · 성능" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1"><mxGeometry x="510" y="360" width="250" height="70" as="geometry"/></mxCell>
+<mxCell id="7" value="DB Reviewer&#xa;스키마 · 쿼리 · 트랜잭션" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="1"><mxGeometry x="295" y="490" width="260" height="70" as="geometry"/></mxCell>
+<mxCell id="8" value="Risk Aggregator&#xa;Findings 취합 · 중복 제거 · 위험 레벨 분류 · 연관 관계" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1"><mxGeometry x="250" y="610" width="350" height="85" as="geometry"/></mxCell>
+<mxCell id="9" value="Final SA Opinion&#xa;GO / CONDITIONAL GO / NO-GO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" vertex="1" parent="1"><mxGeometry x="275" y="745" width="300" height="75" as="geometry"/></mxCell>
+<mxCell id="10" value="Architecture Review Report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1"><mxGeometry x="285" y="870" width="280" height="65" as="geometry"/></mxCell>
+<mxCell id="20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="2" target="3"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="3" target="4"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="22" value="findings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="4" target="5"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="23" value="findings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="4" target="6"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="24" value="findings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="5" target="7"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="25" value="findings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="6" target="7"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="7" target="8"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="8" target="9"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="9" target="10"><mxGeometry relative="1" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>

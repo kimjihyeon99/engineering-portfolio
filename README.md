@@ -1,50 +1,39 @@
 # Engineering Portfolio
 
-**Enterprise AI · Backend · Full-stack Engineering**
+**Software Engineer | Full-stack · Backend · Solution Architecture**
 
-Java / Spring Boot / React / TypeScript / Multi-LLM Integration
+Java / Spring Boot / React / TypeScript 기반으로 B2B·B2C 서비스의 설계, 개발, 테스트, 배포, 운영을 경험했습니다. 화면·API·데이터·시스템 연계를 하나의 흐름으로 보고, 실제 사용 환경과 업무 규칙을 기준으로 기술 대안을 검토해 설계와 구현에 반영해 왔습니다.
 
-기업용 서비스에서 백엔드·프론트엔드 개발과 외부 시스템 연동을 수행했음. 문제의 원인을 분석하고, 설계상의 선택과 제약을 설명할 수 있는 구현을 지향함.
+2025년 GenAI Platform 프로젝트부터는 Software Engineer로 개발을 수행하면서 **SA 역할(기술 검토, 요구사항 조율, Application 구조 검토, 기술 대안 제시, 시스템 간 연동 방식 설계·조율)**을 함께 담당했습니다.
+
+## Impact at a Glance
+- **8,000명+**: 항공 객실 업무 시스템 서비스 오픈·운영 대상 규모
+- **12초 이상 → 3초 이내**: 특정 조회 API의 데이터 접근 패턴 분석 및 Index 적용을 통한 응답 시간 개선
+- **12개 AI 모델 연동**: 여러 LLM/이미지 생성 모델을 공통 구조에서 사용할 수 있도록 연동
+- **AIND 활용**: GenAI Platform과 항공 프로젝트에서 전체 설계 내용을 바탕으로 코드·설계 영향도를 분석하고 기술 의사결정 및 구현 검토에 활용
 
 ## Selected Engineering Cases
-
-| 프로젝트 | 핵심 문제 | 직접 기여 및 확인된 결과 |
+| 프로젝트 | 핵심 문제 | 대표 기술 의사결정 / 결과 |
 | --- | --- | --- |
-| [Enterprise GenAI Platform](projects/enterprise-genai-platform.md) | 서로 다른 AI Provider의 호출·응답 통합과 기업용 모델 관리 | Multi-LLM 아키텍처 설계, Gemini 연동 검증·시연, 라우팅·DTO·Flux 스트리밍·모델 관리·이미지 생성 사용량 제한 구현 |
-| [Online/Offline Operations System](projects/offline-operations-system.md) | 온라인·오프라인 전환을 고려한 업무 연속성, 조회 지연과 단말 간 데이터 정합성 | 특정 조회 API **약 12초 → 3초 이하** (특정 조회 API 직접 측정); Local-first UI, 온라인·오프라인 상태 전환 대응, Bluetooth 기반 증분 동기화 |
-| [Education Data Integration](projects/education-data-integration.md) | 특일 정보 외부 API의 지연·장애에 대비한 데이터 수집 | 공공데이터포털 특일 정보 API 정기 수집, MySQL 적재, 트랜잭션 기반 교체 및 실패 시 기존 데이터 유지 |
+| [항공 객실 업무 통합 시스템](projects/offline-operations-system.md) | 기내 네트워크 제약, 단말 간 데이터 정합성, 조회 성능, 시스템 연계 | Local-first, Bluetooth 증분 동기화·LWW·재전송, Optimistic UI, DB Index 최적화, TMS·ERP 연계 |
+| [Enterprise GenAI Platform](projects/enterprise-genai-platform.md) | Provider별 SDK·응답 차이와 모델 버전 관리 | Provider Service 분리, 공통 DTO·Flux 스트리밍, DB 기반 Provider/Model/Version 관리, **12개 AI 모델 연동** |
+| [AI 디지털교과서(AIDT)](projects/education-data-integration.md) | 교육 서비스 개발과 외부 API 장애 시 데이터 안정성 | 콘텐츠·과제·운영자 기능 개발, Batch 사전 적재, 트랜잭션 기반 교체, 실패 시 기존 데이터 보존 |
 
-## Core Strengths
-
-- **Enterprise AI:** Provider별 모델 호출 추상화, 공통 응답 변환, Reactor Flux 스트리밍, 모델 등록·버전 관리
-- **Backend Reliability:** 외부 API 의존성 분리, Timeout/Retry, Spring Batch, 트랜잭션 및 실패 복구
-- **Full-stack Performance:** DB 인덱스 최적화, React Query 캐시 갱신, Local-first 데이터 표시
-- **Online/Offline Data Consistency:** Master–Slave 릴레이, 변경 레코드 단위 전송, 업데이트 시각 비교, Local DB 원자적 반영
+## Engineering Decision Principles
+1. 사용 환경과 업무 규칙을 먼저 확인합니다.
+2. 대안을 비교하고 장애 범위·정합성·성능·운영 복잡도를 기준으로 선택합니다.
+3. 측정 가능한 결과는 수치로 확인하고, 측정하지 않은 효과는 과장하지 않습니다.
+4. 설계의 장점뿐 아니라 Trade-off와 한계도 함께 설명합니다.
 
 ## Technical Skills
-
-프로젝트별 실제 사용 기술은 각 상세 문서에 따로 표기했음. 아래는 대표 경험 중심이며, 대표 기술을 정리함.
-
-- **Backend:** Java, Spring Boot, Spring Batch, Spring Cloud OpenFeign, Project Reactor, MySQL, PostgreSQL
-- **Frontend:** React, TypeScript, TanStack Query
-- **AI & Cloud:** Gemini, GCP Vertex AI, Azure OpenAI, Provider SDK / REST API
-- **Data & Operations:** MySQL, PostgreSQL, Local DB, Redis, Docker, Kubernetes
-
-## Engineering Approach
-
-1. **Separate failure domains:** 외부 시스템 호출과 사용자 요청 처리의 결합을 줄임.
-2. **Make consistency rules explicit:** 데이터 갱신·충돌 해결·실패 시 동작을 구분함.
-3. **Measure narrowly, describe accurately:** 측정한 API와 환경에만 수치를 적용함.
-4. **State trade-offs:** 데이터 최신성, 응답성, 복구 가능성 사이의 선택을 설명함.
+- **Backend:** Java, Spring Boot, Spring Batch, MyBatis, Redis, MySQL, PostgreSQL, REST API
+- **Frontend:** React, TypeScript, TanStack Query, Zustand, MUI
+- **LLM Integration:** Project Reactor / Flux, Vertex AI, Google Gen AI SDK, Anthropic Java SDK, Azure OpenAI SDK, Provider SDK / REST
+- **Integration:** Feign Client, Quartz, RabbitMQ, API Gateway, 이메일 전송 시스템(TMS), ERP 등 시스템 연계
+- **Infra / Operations:** AWS, GCP, Azure, Naver Cloud, Docker, Kubernetes, GitLab CI/CD, EFK(Elasticsearch · Fluent Bit · Kibana)
+- **AI-assisted Engineering:** AIND 기반 코드·설계 영향도 분석, 구현 검토 및 개발 생산성 향상
 
 ## Project Details
-
-- [Enterprise GenAI Platform — Architecture & Implementation](projects/enterprise-genai-platform.md)
-- [Online/Offline Operations System — Performance & Synchronization](projects/offline-operations-system.md)
-- [Education Data Integration — Batch & Reliability](projects/education-data-integration.md)
-
-## Collaboration & Engineering Communication
-
-**Tools:** Slack · Jira · Figma
-
-Slack, Jira, Figma를 활용한 협업 환경에 익숙함. 기획·디자인·Frontend·Backend·인프라·외부 연계 담당자와 요구사항 및 인터페이스를 협의하고, 설계 대안·기술적 제약·통합 테스트 이슈를 공유하며 개발했음. 특히 오프라인 데이터 정리 정책과 외부 연계 설계에서 타 조직 Solution Architect 및 고객과 협의해 설계 변경을 이끌었음.
+- [항공 객실 업무 통합 시스템](projects/offline-operations-system.md)
+- [Enterprise GenAI Platform](projects/enterprise-genai-platform.md)
+- [AI 디지털교과서(AIDT)](projects/education-data-integration.md)

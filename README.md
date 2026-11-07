@@ -33,6 +33,15 @@ GenAI Platform 프로젝트부터는 SA 역할을 병행하며 **기술 검토, 
 - **Infra / Operations:** AWS, GCP, Azure, Naver Cloud, Docker, Kubernetes, GitLab CI/CD, EFK(Elasticsearch · Fluent Bit · Kibana)
 - **AI-assisted Engineering:** Spec-Driven Development, Kiro SA Orchestrator, Cursor, ChatGPT·Claude 기반 교차 검증
 
+## Professional Development
+
+**AWS Training and Certification**
+
+- **2026** — Building Advanced Agentic Systems on AWS
+- **2025** — Generative AI Essentials on AWS
+- **2025** — Agentic AI Foundations
+
+
 ## Project Details
 - [항공 객실 업무 통합 시스템](projects/offline-operations-system.md)
 - [Enterprise GenAI Platform](projects/enterprise-genai-platform.md)

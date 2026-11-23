@@ -33,6 +33,19 @@ GenAI Platform 프로젝트부터는 SA 역할을 병행하며 **기술 검토, 
 - **Infra / Operations:** AWS, GCP, Azure, Naver Cloud, Docker, Kubernetes, GitLab CI/CD, EFK(Elasticsearch · Fluent Bit · Kibana)
 - **AI-assisted Engineering:** Spec-Driven Development, Kiro SA Orchestrator, Cursor, ChatGPT·Claude 기반 교차 검증
 
+## Personal Project · Support Triage Agent
+
+Python으로 고객 지원 문의의 고정 Workflow와 bounded Agent 실행 흐름을 구현했습니다. Planner가 다음 Tool을 선택하고 실행 결과를 Observation으로 축적하며, 서버가 허용 도구·인자·접근 권한·종료 조건을 검증하도록 책임을 분리했습니다.
+
+- Tool Validator에서 3개 읽기 전용 Tool의 허용 목록, 필수 인자, 타입, 추가 키를 검증
+- Tool Dispatcher에서 요청 주문번호 일치와 주문 접근 권한을 확인한 뒤 서비스 실행
+- 반복 Tool 호출 차단, 최대 실행 단계 제한, 근거 부족·외부 의존성 오류·고위험 환불의 검토 경로 구현
+- Agent 실행 루프가 공통 Dispatcher에 위임하도록 구성
+
+**검증 범위** — Mock/시뮬레이터 기반 개인 실습입니다. 실제 LLM 호출·고객 API 연동·배포는 후속 구현 범위입니다. 저장소에는 총 54개 테스트의 통과 기록이 있으며, 이 문서 업데이트에서는 테스트를 재실행하지 않았습니다.
+
+구현 소스는 비공개 학습 저장소에서 관리합니다. 공유 시에는 공개 가능한 코드 범위와 접근 권한을 별도로 정리합니다.
+
 ## Professional Development
 
 **AWS Training and Certification**
